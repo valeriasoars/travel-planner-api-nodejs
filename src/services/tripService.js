@@ -33,9 +33,6 @@ const listTrip = async (userId, status) =>{
     return await Trip.find(filter)
 }
 
-
-
-
 const getTripById = async(id) => {
     return await Trip.findById(id)
 }

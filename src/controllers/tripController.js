@@ -22,7 +22,7 @@ const listTripByUser = async(req, res) => {
 
 const listTripByStatus = async(req, res) => {
     try{
-        const {userId} = req.params
+        const userId = req.userId
         const {status} = req.query
 
         const trips = await tripService.listTrip(userId, status)

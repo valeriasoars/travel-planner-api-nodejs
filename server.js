@@ -5,6 +5,7 @@ import connectDB from  "./src/config/db.js"
 import userRoutes from "./src/routes/userRoutes.js"
 import tripRoutes from "./src/routes/tripRoutes.js"
 import activityRoutes from "./src/routes/activityRoutes.js"
+import dailyPlanningRoutes from "./src/routes/dailyPlanningRoutes.js"
 
 dotenv.config()
 connectDB()
@@ -16,6 +17,8 @@ app.use(express.json())
 app.use("/api/user", userRoutes)
 app.use("/api/trip", tripRoutes)
 app.use("/api/activity", activityRoutes)
+app.use("/api/planning", dailyPlanningRoutes)
+
 
 
 const PORT = process.env.PORT || 5000

@@ -32,8 +32,8 @@ export const getUser = async(req, res) => {
 
 export const removeUser = async(req, res) => {
     try{
-        const user = await userService.deleteUser(req.userId)
-        sucessResponse(res, "Usuário removido com sucesso", user, 200)
+        await userService.deleteUser(req.userId)
+        sucessResponse(res, "Usuário removido com sucesso", null, 200)
     }catch(error){
         errorResponse(res, "Erro!", error.message, 400)
     }

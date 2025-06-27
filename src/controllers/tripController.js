@@ -59,7 +59,7 @@ const deleteTrip = async(req, res) => {
         const tripRemoved = await tripService.deleteTrip(req.params.id)
         if(!tripRemoved) return errorResponse(res, "Viagem não encontrada para exclusão", null, 404)
         
-        sucessResponse(res, "Viagem deletada com sucesso", tripRemoved, 200)
+        sucessResponse(res, "Viagem deletada com sucesso", null, 200)
     }catch(error){
         errorResponse(res, "Erro ao deletar viagem", error.message, 400)
     }

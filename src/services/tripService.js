@@ -1,5 +1,6 @@
 import User from "../models/user.js"
 import Trip from "../models/trip.js"
+import DailyPlanning from '../models/dailyPlanning.js'
 
 const create = async(tripData, userId) => {
     const user = await User.findById(userId)
@@ -23,6 +24,24 @@ const create = async(tripData, userId) => {
 
     const newtrip = new Trip({...tripData, userId})
     await newtrip.save()
+
+
+    const start = new Date(startDate)
+    const end = new Date(endDate)
+    let current = new Date(start)
+
+    const dailyPlanning = []
+
+    while(current <= end){
+        dailyPlanning.push({
+            tripId: newtrip._id,
+            date: new Date(current)
+        })
+        current.setDate(current.getDate() + 1)
+    }
+
+    await DailyPlanning.insertMany(dailyPlanning)
+
     return newtrip
 
 }

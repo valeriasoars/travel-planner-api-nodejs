@@ -75,6 +75,6 @@ export const getUser = async (userId) => {
 export const deleteUser = async(userId) => {
     const user = await User.findByIdAndDelete({_id: userId})
     if(!user){
-        throw new Error("Usuário nã encontrado")
+        throw new Error("Usuário não encontrado")
     }
 }

@@ -7,7 +7,7 @@ const create = async (data) => {
     const conflict = await Activity.findOne({planningId, time})
     if(conflict) throw new Error("Já exite uma atividade programada para esse horário")
 
-    return await Activity.create(dados)
+    return await Activity.create(data)
 }
 
 const list = async(planningId) => {

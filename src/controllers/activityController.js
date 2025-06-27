@@ -6,7 +6,7 @@ const createActivity = async(req, res) => {
         const { planningId } = req.params
 
         const data = {...req.body, planningId }
-        const newActivity = activityService.create(data)
+        const newActivity =  await activityService.create(data)
         sucessResponse(res, "Atividade criada com sucesso", newActivity, 200)
     }catch(error){
         errorResponse(res, "Erro ao criar atividade", error.message, 400)

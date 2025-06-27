@@ -6,6 +6,7 @@ import userRoutes from "./src/routes/userRoutes.js"
 import tripRoutes from "./src/routes/tripRoutes.js"
 import activityRoutes from "./src/routes/activityRoutes.js"
 import dailyPlanningRoutes from "./src/routes/dailyPlanningRoutes.js"
+import categoryExpenseRoutes from "./src/routes/categoryExpenseRoutes.js"
 
 dotenv.config()
 connectDB()
@@ -18,6 +19,7 @@ app.use("/api/user", userRoutes)
 app.use("/api/trip", tripRoutes)
 app.use("/api/activity", activityRoutes)
 app.use("/api/planning", dailyPlanningRoutes)
+app.use("/api/categoryExpense", categoryExpenseRoutes)
 
 
 

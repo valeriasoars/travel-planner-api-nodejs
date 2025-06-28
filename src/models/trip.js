@@ -1,5 +1,9 @@
 import mongoose from "mongoose"
 import user from "./user.js"
+import Expense from "./expense.js"
+import DailyPlanning from "./dailyPlanning.js"
+import Activity from "./activity.js"
+
 
 const tripSchema = new mongoose.Schema({
     userId:{
@@ -29,5 +33,24 @@ const tripSchema = new mongoose.Schema({
         default: 'planejamento'
     }, 
 }, {timestamps: true})
+
+
+
+tripSchema.pre("findOneAndDelete", async function (next) {
+  const trip = await this.model.findOne(this.getQuery())
+  if (!trip) return next()
+
+  await Expense.deleteMany({ tripId: trip._id })
+
+  const plans = await DailyPlanning.find({ tripId: trip._id })
+
+  for (const plan of plans) {
+    await Activity.deleteMany({ planningId: plan._id })
+  }
+
+  await DailyPlanning.deleteMany({ tripId: trip._id })
+  next()
+})
+
 
 export default mongoose.model('Trip', tripSchema)

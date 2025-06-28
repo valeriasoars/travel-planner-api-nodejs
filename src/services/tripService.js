@@ -1,6 +1,8 @@
 import User from "../models/user.js"
 import Trip from "../models/trip.js"
 import DailyPlanning from '../models/dailyPlanning.js'
+import Activity from "../models/activity.js"
+import Expense from "../models/expense.js"
 
 const create = async(tripData, userId) => {
     const user = await User.findById(userId)
@@ -61,6 +63,8 @@ const updateTrip = async(id, newDataTrip) => {
 }
 
 const deleteTrip = async(id) => {
+    // await DailyPlanning.deleteMany({tripId: id})
+    // await Expense.deleteMany({tripId: id})
     return await Trip.findByIdAndDelete(id)
 }
 

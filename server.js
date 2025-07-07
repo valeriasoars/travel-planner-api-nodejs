@@ -1,6 +1,7 @@
 import express from "express"
 import dotenv from "dotenv"
 import connectDB from  "./src/config/db.js"
+import cors from "cors"
 
 import userRoutes from "./src/routes/userRoutes.js"
 import tripRoutes from "./src/routes/tripRoutes.js"
@@ -12,7 +13,17 @@ import expenseRoutes from "./src/routes/expenseRoutes.js"
 dotenv.config()
 connectDB()
 
+
+
 const app = express()
+app.use(cors({
+  origin: '*', 
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
+
+app.options('*', cors());
+
 app.use(express.json())
 
 app.use("/api/user", userRoutes)
@@ -21,6 +32,11 @@ app.use("/api/activity", activityRoutes)
 app.use("/api/planning", dailyPlanningRoutes)
 app.use("/api/categoryExpense", categoryExpenseRoutes)
 app.use("/api/expense", expenseRoutes)
+
+app.get('/', (req, res) => {
+  res.send('🚀 API Travel Planner está no ar!');
+})
+
 
 const PORT = process.env.PORT || 5000
 app.listen(PORT, ()=> {

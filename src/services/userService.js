@@ -3,9 +3,9 @@ import User from "../models/user.js"
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
-export const register = async({name, email, password, confirmedPassord}) => {
+export const register = async({name, email, password, confirmedPassword}) => {
 
-    if(!name || !email || !password || !confirmedPassord){
+    if(!name || !email || !password || !confirmedPassword){
         throw new Error("Todos os campos são obrigatórios")
     }
 
@@ -18,7 +18,7 @@ export const register = async({name, email, password, confirmedPassord}) => {
         throw new Error("A senha deve ter no mínimo 8 caracteres")
     }
 
-    if(password !== confirmedPassord){
+    if(password !== confirmedPassword){
        throw new Error("As senhas não conferem")
     }
 

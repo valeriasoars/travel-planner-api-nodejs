@@ -12,7 +12,6 @@ const UserSchema = new mongoose.Schema({
 })
 
 
-// deletar em cascata
 UserSchema.pre("findOneAndDelete", async function(next){
     const user = await this.model.findOne(this.getQuery())
     if(!user) return next()

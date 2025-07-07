@@ -33,10 +33,6 @@ app.use("/api/planning", dailyPlanningRoutes)
 app.use("/api/categoryExpense", categoryExpenseRoutes)
 app.use("/api/expense", expenseRoutes)
 
-app.get('/', (req, res) => {
-  res.send('🚀 API Travel Planner está no ar!');
-})
-
 
 const PORT = process.env.PORT || 5000
 app.listen(PORT, ()=> {

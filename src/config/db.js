@@ -1,4 +1,6 @@
 import mongoose from "mongoose"
+import seedCategories from "../seed/categorySeed.js"
+
 
 const connectDB = async() => {
     try{
@@ -7,6 +9,7 @@ const connectDB = async() => {
             useUnifiedTopology: true, 
         })
         console.log("MongoDB conectado!")
+        await seedCategories()
     }catch(error){
         console.error("Erro ao conectar ao MongoDB", error)
         process.exit(1)
